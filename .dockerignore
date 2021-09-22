@@ -1,0 +1,10 @@
+.env
+.env.example
+.gitignore
+node_modules/
+.nyc_output/
+test/
+dist/
+
+pgdata/
+sql-data/

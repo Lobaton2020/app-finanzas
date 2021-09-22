@@ -1,0 +1,48 @@
+version: "2.4"
+services:
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports:
+      - "8082:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: 12345
+      MYSQL_ROOT_PASSWORD: 12345
+#MYSQL
+# version: "2.4"
+# services:
+#   mysql:
+#     container_name: mysql
+#     image: mysql:5.7.25
+#     restart: always
+#     environment:
+#       POSTGRES_DATABASE: db-app-finanzas
+#       MYSQL_USER: admin
+#       MYSQL_PASSWORD: Q1w2e3r4t5
+#       MYSQL_ROOT_USER: admin
+#       MYSQL_ROOT_PASSWORD: Q1w2e3r4t5
+#     ports:
+#       - 3009:3306
+#     volumes:
+#       - ./sql-data:/var/lib/mysql
+# Postgresql Init
+# version: "3.1"
+# services:
+#   db:
+#     image: postgres
+#     restart: always
+#     environment:
+#       POSTGRES_USER: admin
+#       POSTGRES_PASSWORD: Q1w2e3r4t5
+#     ports:
+#       - 5432:5432
+#     volumes:
+#       - ./pgdata:/var/lib/postgresql/data
+#   adminer:
+#     image: adminer
+#     restart: always
+#     ports:
+#       - 8080:8080
