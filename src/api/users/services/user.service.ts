@@ -7,8 +7,8 @@ export class UserService{
     ){}
 
     async findAll(){
-        return (await axios.get("https://jsonplaceholder.typicode.com/users/")).data;
-        // return await this.userRepository.findAll();
+        // return (await axios.get("https://jsonplaceholder.typicode.com/users/")).data;
+        return await this.userRepository.findAll();
     }
 
     async create(user:any){

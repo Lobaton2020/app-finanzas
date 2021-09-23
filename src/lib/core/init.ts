@@ -1,20 +1,21 @@
 import registerRoutes from "../../api/registerRoutes";
-import { User } from "../../api/users/entities/User";
+import { User } from "../../api/users/entities/User.entity";
 import Logger from "../shared/logger/Logger";
 import { Validator } from "../shared/validator/Validator";
 import IEnviroment, * as ENV from "./.././../api/config/env.config"
 import { getConnection } from "./database/connection";
 import { Main } from "./main/Main";
 import ExpressApp from "./server/express";
-
+import fs from "fs"
+import path from "path"
 export class Init{
     private logger:Logger;
     private isDebug:boolean;
     private express:ExpressApp;
-    private env:IEnviroment = ENV as IEnviroment;
+    public env:IEnviroment = ENV as IEnviroment;
 
     constructor(){
-        this.isDebug = ENV.OUTPUT_TYPE === "DEBUG";
+        this.isDebug = ENV.TRACING_LEVEL === "DEBUG";
         this.logger = new Logger(this.isDebug)
         this.express = new ExpressApp(this.logger, this.env, this.isDebug);
         this.logger.debug("Variables de entorno",this.env)
@@ -34,5 +35,9 @@ export class Init{
         this.express.middlewares()
         await this.express.start()
     }
-    //database
+
+    writeFileTypeOrm(env:any){
+        fs.writeFileSync(path.resolve(__dirname,"../../../ormconfig.json"),JSON.stringify(env,null,4))
+    }
+
 }

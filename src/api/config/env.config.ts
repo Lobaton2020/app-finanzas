@@ -4,7 +4,7 @@ export default interface IEnviroment{
     MONGO_URI:string,
     DATABASE_NAME:string,
     NODE_ENV:string,
-    OUTPUT_TYPE:string,
+    TRACING_LEVEL:string,
     //database
     DB_HOST:string;
     DB_PORT:number;
@@ -18,7 +18,7 @@ export const {
     MONGO_URI,
     DATABASE_NAME,
     NODE_ENV = "dev",
-    OUTPUT_TYPE = "DEBUG",
+    TRACING_LEVEL = "DEBUG",
     DB_HOST,
     DB_PORT = 3306,
     DB_USER,

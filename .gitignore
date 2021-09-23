@@ -4,3 +4,4 @@ node_modules/
 dist/
 pgdata/
 sql-data/
+ormconfig.json

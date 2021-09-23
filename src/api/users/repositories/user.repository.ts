@@ -1,7 +1,7 @@
 import { getRepository } from "typeorm";
 import { Main } from "../../../lib/core/main/Main";
 import Logger from "../../../lib/shared/logger/Logger";
-import { User } from "../entities/User";
+import { User } from "../entities/User.entity";
 
 export class UserRepository{
     private User:any;

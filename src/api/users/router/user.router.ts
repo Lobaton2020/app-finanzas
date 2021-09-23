@@ -7,7 +7,7 @@ import { UserService } from '../services/user.service';
 export default (main:Main)=>{
     const { router } = main;
     const repository = new UserRepository(main);
-    const service = new UserService(main,repository);
+    const service = new UserService(repository);
     const controller = new UserController(main,service);
 
     router.get('/users', Execute(controller,'findAll'))

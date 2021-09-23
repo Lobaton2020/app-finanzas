@@ -8,4 +8,10 @@ export class User{
     @Column()
     name:string = "";
 
+    @Column()
+    lastname:string = "";
+
+    @Column()
+    age:number = 2;
+
 }

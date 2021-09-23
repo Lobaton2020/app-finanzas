@@ -8,3 +8,4 @@ dist/
 
 pgdata/
 sql-data/
+ormconfig.json
