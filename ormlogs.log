@@ -65,3 +65,27 @@
 [2021-09-23T05:32:47.083Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'db_app_finanzas' AND `TABLE_NAME` = 'migrations'
 [2021-09-23T05:32:47.211Z][QUERY]: SELECT * FROM `db_app_finanzas`.`migrations` `migrations` ORDER BY `id` DESC
 [2021-09-23T05:32:47.215Z]No migrations are pending
+[2021-09-23T05:46:56.221Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'db_app_finanzas' AND `TABLE_NAME` = 'migrations'
+[2021-09-23T05:46:56.337Z][QUERY]: SELECT * FROM `db_app_finanzas`.`migrations` `migrations` ORDER BY `id` DESC
+[2021-09-23T05:47:42.962Z][QUERY]: SELECT `User`.`id` AS `User_id`, `User`.`name` AS `User_name`, `User`.`lastname` AS `User_lastname`, `User`.`age` AS `User_age` FROM `users` `User`
+[2021-09-23T05:49:32.117Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'db_app_finanzas' AND `TABLE_NAME` = 'migrations'
+[2021-09-23T05:49:32.136Z][QUERY]: SELECT * FROM `db_app_finanzas`.`migrations` `migrations` ORDER BY `id` DESC
+[2021-09-23T05:52:35.566Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'db_app_finanzas' AND `TABLE_NAME` = 'migrations'
+[2021-09-23T05:52:35.611Z][QUERY]: SELECT * FROM `db_app_finanzas`.`migrations` `migrations` ORDER BY `id` DESC
+[2021-09-23T05:53:22.513Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'db_app_finanzas' AND `TABLE_NAME` = 'migrations'
+[2021-09-23T05:53:22.560Z][QUERY]: SELECT * FROM `db_app_finanzas`.`migrations` `migrations` ORDER BY `id` DESC
+[2021-09-23T05:54:36.128Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'db_app_finanzas' AND `TABLE_NAME` = 'migrations'
+[2021-09-23T05:54:36.147Z][QUERY]: SELECT * FROM `db_app_finanzas`.`migrations` `migrations` ORDER BY `id` DESC
+[2021-09-23T05:56:03.983Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'db_app_finanzas' AND `TABLE_NAME` = 'migrations'
+[2021-09-23T05:56:04.001Z][QUERY]: SELECT * FROM `db_app_finanzas`.`migrations` `migrations` ORDER BY `id` DESC
+[2021-09-23T05:56:04.005Z]1 migrations are already loaded in the database.
+[2021-09-23T05:56:04.005Z]2 migrations were found in the source code.
+[2021-09-23T05:56:04.008Z]Test11632374920888 is the last executed migration. It was executed on Thu Sep 23 2021 00:28:40 GMT-0500 (hora estándar de Colombia).
+[2021-09-23T05:56:04.008Z]1 migrations are new migrations that needs to be executed.
+[2021-09-23T05:56:04.009Z][QUERY]: START TRANSACTION
+[2021-09-23T05:56:04.012Z][QUERY]: CREATE TABLE `db_app_finanzas`.`cars` (`id` int NOT NULL AUTO_INCREMENT, `name` varchar(255) NOT NULL, `color` varchar(255) NOT NULL, `model` int NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB
+[2021-09-23T05:56:04.535Z][QUERY]: INSERT INTO `db_app_finanzas`.`migrations`(`timestamp`, `name`) VALUES (?, ?) -- PARAMETERS: [1632376312892,"Test31632376312892"]
+[2021-09-23T05:56:04.560Z]Migration Test31632376312892 has been executed successfully.
+[2021-09-23T05:56:04.561Z][QUERY]: COMMIT
+[2021-09-23T06:16:42.623Z][QUERY]: SELECT `User`.`id` AS `User_id`, `User`.`name` AS `User_name`, `User`.`lastname` AS `User_lastname`, `User`.`age` AS `User_age` FROM `users` `User`
+[2021-09-23T06:17:15.188Z][QUERY]: SELECT `User`.`id` AS `User_id`, `User`.`name` AS `User_name`, `User`.`lastname` AS `User_lastname`, `User`.`age` AS `User_age` FROM `users` `User`

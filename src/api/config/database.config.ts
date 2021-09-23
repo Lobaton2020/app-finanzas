@@ -8,17 +8,19 @@ export default (env:IEnviroment) => ({
     password: env.DB_PASSWORD,
     database: env.DATABASE_NAME,
     entities: [
-      path.resolve(__dirname,"../../../dist/api/**/*.entity.js"),
+      process.env.TYPE == "PROD" ?
+      path.resolve(__dirname,"../../../dist/api/**/*.js"):
       path.resolve(__dirname,"../../../src/api/**/*.ts")
     ],
     autoLoadEntities: true,
 
     //Migraciones
-    migrationsRun: true,
+    migrationsRun: false,
     // migrations: [join(__dirname, '../migration/**/*{.ts,.js}')],
     migrations: [
-      path.resolve(__dirname,"../../../dist/migrations/*.js"),
-      path.resolve(__dirname,"../../../src/migrations/*.ts"),
+      process.env.TYPE == "PROD" ?
+      path.resolve(__dirname,"../../../dist/migrations/*.js"):
+      path.resolve(__dirname,"../../../src/migrations/*.ts")
     ],
     migrationsTableName: 'migrations',
     cli: {

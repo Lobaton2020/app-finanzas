@@ -4,7 +4,7 @@
   "description": "",
   "main": "./dist/app.ts",
   "scripts": {
-    "start": "node ../dist/app.ts",
+    "start": "set TYPE=PROD&&node ./dist/app.js",
     "dev": "ts-node-dev ./src/app.ts",
     "build": "tsc",
     "build:docker": "docker build -t app-finanzas .",
