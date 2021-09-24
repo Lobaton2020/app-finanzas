@@ -2,7 +2,7 @@ import IEnviroment from "../../../api/config/env.config";
 import databaseConfig from "../../../api/config/database.config";
 import { Connection, ConnectionOptions, createConnection } from "typeorm";
 
-export const getConnection = (env:IEnviroment,entities:any[])=>{
+export const getConnection = (env:IEnviroment)=>{
     let connection:Connection;
     return async ()=>{
         if(!connection){

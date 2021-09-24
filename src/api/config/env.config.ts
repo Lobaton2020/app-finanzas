@@ -5,6 +5,7 @@ export default interface IEnviroment{
     DATABASE_NAME:string,
     NODE_ENV:string,
     TRACING_LEVEL:string,
+    PREFIX_API:string,
     //database
     DB_HOST:string;
     DB_PORT:number;
@@ -23,6 +24,7 @@ export const {
     DB_PORT = 3306,
     DB_USER,
     DB_PASSWORD,
-    DB_TYPE = "mysql"
+    DB_TYPE = "mysql",
+    PREFIX_API
 } = process.env;
 

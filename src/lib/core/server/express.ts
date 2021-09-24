@@ -19,7 +19,8 @@ export default class ExpressApp{
     }
 
     middlewares(){
-        this._app.use(this._router)
+        console.log(this.env.PREFIX_API)
+        this._app.use(this.env.PREFIX_API, this._router)
         this._app.use("*", notFound)
         this._app.use(globalError(this.logger, this.isDebug))
     }

@@ -1,17 +1,40 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { AbstractEntity } from "../../../lib/shared/entities/AbstractEntity.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
+import { DocumentType } from "./DocumentType.entity";
+import { Rol } from "./Rol.entity";
 
 @Entity("users")
-export class User{
-    @PrimaryGeneratedColumn()
-    id:number = 0;
+export class User extends AbstractEntity{
+
 
     @Column()
-    name:string = "";
+    numberDocument:string = "";
 
     @Column()
-    lastname:string = "";
+    born_date:string = "";
 
     @Column()
-    age:number = 2;
+    email:string = "";
 
+    @Column()
+    completeName:string = "";
+
+    @Column({ type: "varchar"})
+    password:string = "";
+
+
+    @Column({ type: "boolean"})
+    status:string = "";
+
+    @Column({ type: "timestamp"})
+    bornDate:Date =new Date();
+
+
+    @JoinColumn()
+    @ManyToOne((_)=>Rol,(rol)=>rol.users)
+    rol:Rol;
+
+    @JoinColumn()
+    @ManyToOne((_)=>DocumentType, (documentType)=>documentType.users)
+    documentType:DocumentType;
 }

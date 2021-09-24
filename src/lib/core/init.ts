@@ -21,14 +21,11 @@ export class Init{
         this.logger.debug("Variables de entorno",this.env)
     }
     async start(){
-        const entities = [
-            User
-        ];
         const main = new Main(
             this.logger,
             this.express.router,
             new Validator(this.logger),
-            await getConnection(this.env,entities)()
+            await getConnection(this.env)()
         );
         registerRoutes(main)
         this.express.init()
