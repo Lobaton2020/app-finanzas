@@ -1,3 +1,5 @@
+import Logger from "src/lib/shared/logger/Logger";
+import { ClassValidator } from "src/lib/shared/validator/ClassValidator.validate";
 
 export default interface IEnviroment{
     PORT:number,
@@ -6,6 +8,7 @@ export default interface IEnviroment{
     NODE_ENV:string,
     TRACING_LEVEL:string,
     PREFIX_API:string,
+    SECRET_KEY:string,
     //database
     DB_HOST:string;
     DB_PORT:number;
@@ -20,11 +23,14 @@ export const {
     DATABASE_NAME,
     NODE_ENV = "dev",
     TRACING_LEVEL = "DEBUG",
+    PREFIX_API,
+    SECRET_KEY,
+
     DB_HOST,
     DB_PORT = 3306,
     DB_USER,
     DB_PASSWORD,
-    DB_TYPE = "mysql",
-    PREFIX_API
+    DB_TYPE = "mysql"
 } = process.env;
+
 

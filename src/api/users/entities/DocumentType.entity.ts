@@ -6,7 +6,7 @@ import { User } from "./User.entity";
 export class DocumentType extends AbstractEntity{
 
     @Column({type:"varchar"})
-    name:string = "";
+    name:string;
 
     @OneToMany((_)=>User,(users)=>users.documentType)
     users:User[];

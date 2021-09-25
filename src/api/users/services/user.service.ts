@@ -1,5 +1,5 @@
+import { UserCreateDto } from "../dtos/UserCreate.dto";
 import { UserRepository } from "../repositories/user.repository";
-import axios from "axios"
 export class UserService{
 
     constructor(
@@ -11,7 +11,9 @@ export class UserService{
         return await this.userRepository.findAll();
     }
 
-    async create(user:any){
-        return await this.userRepository.create(user);
+    async create(userIn:UserCreateDto){
+        const user = await this.userRepository.create(userIn);
+        delete user.password
+        return user
     }
 }
