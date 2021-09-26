@@ -1,12 +1,16 @@
 import { UserRepository } from '../../users/repositories/user.repository';
 import { UserService } from '../../users/services/user.service';
 import { Main } from '../../../lib/core/main/Main';
-import { Execute } from '../../../lib/shared/main/Wrapper.function';
+import { Execute } from '../../../lib/shared/main/Execute.function';
 import { AuthController } from '../controllers/auth.controller';
+import { AuthService } from '../services/auth.service';
 
 export default (main:Main)=>{
     const { router } = main;
-    const repository = new UserService(new UserRepository(main));
-    const controller = new AuthController(main,repository);
+    const service= new AuthService(new UserRepository(main));
+    const userService = new UserService(new UserRepository(main))
+    const controller = new AuthController(main,userService,service);
     router.post('/signup', Execute(controller,'signup'))
+    router.post('/signin', Execute(controller,'signin'))
+    router.post('/refreshToken', Execute(controller,'refreshToken'))
 };

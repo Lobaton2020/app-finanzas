@@ -25,9 +25,14 @@ export class Enviroments {
     @IsString()
     @IsNotEmpty()
     PREFIX_API:string;
+
     @IsString()
     @IsNotEmpty()
     SECRET_KEY:string;
+
+    @IsString()
+    @IsNotEmpty()
+    SECRET_KEY_REFRESH:string;
 
     //database
     @IsString()

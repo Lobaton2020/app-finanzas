@@ -13,10 +13,10 @@ export default class Logger{
         console.warn(`${getDateTime()} [WARNING][${message}]`)
     }
 
-    error(message:string,data:any = ""){
-        console.info(`${getDateTime()} [ERROR][${message} ${objectToString(data)}]`)
+    error(error:any,message:string = "Failed"){
+        console.info(`${getDateTime()} [ERROR][${message}]`,error)
     }
-    debug(message:string,data:any){
+    debug(data:any,message:string= "Data"){
         if(this.canShowDebug){
             console.info(`${getDateTime()} [DEBUG][${message} -- ${objectToString(data)}]`)
         }

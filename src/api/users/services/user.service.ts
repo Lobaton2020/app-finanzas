@@ -1,3 +1,4 @@
+import { IPagination } from "src/api/config/app.config";
 import { UserCreateDto } from "../dtos/UserCreate.dto";
 import { UserRepository } from "../repositories/user.repository";
 export class UserService{
@@ -6,9 +7,8 @@ export class UserService{
         private readonly userRepository:UserRepository
     ){}
 
-    async findAll(){
-        // return (await axios.get("https://jsonplaceholder.typicode.com/users/")).data;
-        return await this.userRepository.findAll();
+    async find(pag:IPagination){
+        return await this.userRepository.find(pag);
     }
 
     async create(userIn:UserCreateDto){

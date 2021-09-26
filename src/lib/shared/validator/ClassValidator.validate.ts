@@ -13,12 +13,12 @@ export class ClassValidator{
         })
     }
 
-    validate = async (object:any,body:any)=>{
+    validate = async (object:any,body:any):Promise<any | boolean>=>{
     const validator = Object.assign(new object(),body);
     const result:any[] = await validate(validator,CLASS_VALIDATOR)
     if(result.length > 0){
-        this.logger.error("Error en validacion class-validator", this.getMessages(result,true))
-        throw new ValidateException("400", "Error en validacion de datos", "error", this.getMessages(result))
+        this.logger.error(this.getMessages(result,true), "Error en validacion class-validator")
+        throw new ValidateException(400, "Error en validacion de datos", this.getMessages(result))
     }
     return validator;
 }

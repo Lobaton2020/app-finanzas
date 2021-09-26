@@ -1,22 +1,26 @@
 import { AbstractEntity } from "../../../lib/shared/entities/AbstractEntity.entity";
-import { BeforeInsert, BeforeUpdate, Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { DocumentType } from "./DocumentType.entity";
 import { Rol } from "./Rol.entity";
 import { hash } from "bcryptjs"
+import { Porcent } from "../../../api/inflows/entities/Porcent.entity";
+import { Inflow } from "src/api/inflows/entities/Intflow.entity";
+import { Category } from "src/api/outflows/entities/Category.entity";
+import { Outflow } from "src/api/outflows/entities/Outflow.entity";
 
 @Entity("users")
 export class User extends AbstractEntity{
 
-    @Column()
+    @Column({ unique:true })
     documentNumber:string;
 
     @Column()
     completeName:string;
 
-    @Column()
+    @Column({ unique:true })
     email:string;
 
-    @Column({ type: "varchar"})
+    @Column({ type: "varchar", select:false})
     password:string;
 
     @Column({ type: "varchar", nullable:true})
@@ -36,10 +40,22 @@ export class User extends AbstractEntity{
     }
 
     @JoinColumn()
-    @OneToOne((_)=>Rol,(rol)=>rol.users,{ nullable:false,onDelete:"CASCADE" })
+    @ManyToOne((_)=>Rol,(rol)=>rol.users,{ nullable:false,onDelete:"CASCADE" })
     rol:Rol;
 
     @JoinColumn()
-    @OneToOne((_)=>DocumentType, (documentType)=>documentType.users,{ nullable:false,onDelete:"CASCADE" })
+    @ManyToOne((_)=>DocumentType, (documentType)=>documentType.users,{ nullable:false,onDelete:"CASCADE" })
     documentType:DocumentType;
+
+    @OneToMany((_)=>Porcent, (porcent)=>porcent.users)
+    porcent:Porcent;
+
+    @OneToMany((_)=>Inflow, (inflow)=>inflow.user)
+    inflows:Inflow;
+
+    @OneToMany((_)=>Outflow, (outflows)=>outflows.user)
+    outflows:Outflow[];
+
+    @OneToMany((_)=>Category, (category)=>category.user)
+    categories:Category[];
 }

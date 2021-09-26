@@ -9,6 +9,7 @@ export default interface IEnviroment{
     TRACING_LEVEL:string,
     PREFIX_API:string,
     SECRET_KEY:string,
+    SECRET_KEY_REFRESH:string,
     //database
     DB_HOST:string;
     DB_PORT:number;
@@ -25,6 +26,7 @@ export const {
     TRACING_LEVEL = "DEBUG",
     PREFIX_API,
     SECRET_KEY,
+    SECRET_KEY_REFRESH,
 
     DB_HOST,
     DB_PORT = 3306,

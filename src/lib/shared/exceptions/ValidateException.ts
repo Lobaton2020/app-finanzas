@@ -1,11 +1,4 @@
-export class ValidateException extends Error{
-    constructor(
-        public readonly code:string,
-        public readonly message:string,
-        public readonly type:string,
-        public readonly errors:any = []
+import { Exception } from "../main/Exception";
 
-    ){
-        super(message);
-    }
-}
+export class ValidateException extends Exception{}
+export class TokenException extends ValidateException{}

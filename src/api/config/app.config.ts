@@ -6,3 +6,11 @@ export const CLASS_VALIDATOR = {
       enableImplicitConversion: true
     }
 };
+export interface IPagination{
+  skip:number,
+  take:number
+}
+export const PAGINATION:IPagination = {
+  skip:0,
+  take:100
+};
