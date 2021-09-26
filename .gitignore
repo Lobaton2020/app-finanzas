@@ -5,3 +5,4 @@ dist/
 pgdata/
 sql-data/
 ormconfig.json
+ormlogs.log

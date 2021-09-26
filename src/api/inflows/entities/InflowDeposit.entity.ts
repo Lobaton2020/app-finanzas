@@ -1,23 +1,24 @@
 import { AbstractEntity } from "../../../lib/shared/entities/AbstractEntity.entity";
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
-import { Porcent } from "./Porcent.entity";
+import { Deposit } from "./Deposit.entity";
 import { Inflow } from "./Intflow.entity";
 
-@Entity("inflow_porcent")
+@Entity("inflow_deposit")
 export class InflowPorcent extends AbstractEntity{
 
     @Column({ type:"boolean",default:true })
     status:boolean;
 
+    @Column({ type:"bigint"})
+    porcentNumber:number;
+
     @JoinColumn()
-    @ManyToOne(() => Porcent, (porcent) => porcent.inflowporcents,{nullable:true})
-    porcent: Porcent;
+    @ManyToOne(() => Deposit, (deposit) => deposit.inflowporcents,{nullable:false})
+    deposit: Deposit;
 
     @JoinColumn()
     @ManyToOne(() => Inflow, (inflow) => inflow.inflowporcents,{nullable:false})
     inflow: Inflow;
 
-    @Column({ type:"bigint"})
-    porcentNumber:number;
 
 }

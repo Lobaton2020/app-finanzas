@@ -1,6 +1,7 @@
 import { AbstractEntity } from "../../../lib/shared/entities/AbstractEntity.entity";
-import { Column, Entity, OneToMany} from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany} from "typeorm";
 import { Inflow } from "./Intflow.entity";
+import { User } from "../../../api/users/entities/User.entity";
 
 @Entity("inflowtypes")
 export class InflowType extends AbstractEntity{
@@ -14,5 +15,7 @@ export class InflowType extends AbstractEntity{
     @OneToMany(() => Inflow, (inflow) => inflow.inflowtype)
     inflows: Inflow[]
 
-
+    @JoinColumn()
+    @ManyToOne((_)=>User, (user)=>user.inflowtypes, { nullable:true})
+    user:User;
 }

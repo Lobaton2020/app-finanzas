@@ -4,7 +4,7 @@ import { SignInDto } from "../dtos/SignIn.dto";
 import { compare } from "bcryptjs"
 import { NotFoundException } from "../../../lib/shared/exceptions/NotFoundException";
 import jwt from 'jsonwebtoken'
-import { SECRET_KEY, SECRET_KEY_REFRESH } from "../../../api/config/env.config";
+import { HOURS_EXPIRED_TOKEN_REFRESH, MINUTES_EXPIRED_TOKEN, SECRET_KEY, SECRET_KEY_REFRESH } from "../../../api/config/env.config";
 import { Code } from "../../../lib/shared/enums/response/code";
 import { TokenException } from "../../../lib/shared/exceptions/ValidateException";
 
@@ -23,8 +23,8 @@ export class AuthService{
         const payload = { role: user.rol.name, sub: user.id }
         return {
             user,
-            accessToken: this.generateJWT(SECRET_KEY, payload,"10m"),
-            refreshToken:this.generateJWT(SECRET_KEY_REFRESH, payload,"24h"),
+            accessToken: this.generateJWT(SECRET_KEY, payload,`${MINUTES_EXPIRED_TOKEN}m`),
+            refreshToken:this.generateJWT(SECRET_KEY_REFRESH, payload,`${HOURS_EXPIRED_TOKEN_REFRESH}h`),
         }
     }
 
@@ -39,7 +39,7 @@ export class AuthService{
         delete user.password;
         const payload = { role: user.rol.name, sub: user.id }
         return {
-            accessToken: this.generateJWT(SECRET_KEY, payload,"10m"),
+            accessToken: this.generateJWT(SECRET_KEY, payload,`${MINUTES_EXPIRED_TOKEN}m`),
         }
     }
 

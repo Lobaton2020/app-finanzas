@@ -6,23 +6,25 @@ import { UserController } from '../controllers/user.controller';
 import { RolRepository } from '../repositories/rol.repository';
 import { UserRepository } from '../repositories/user.repository';
 import { UserService } from '../services/user.service';
-
+import { DocumentTypeRepository } from '../repositories/document-type.repository';
+import { DocumentTypeController } from "../controllers/document-type.controller"
 export default (main:Main)=>{
     //declaratins
-    let repository,controller;
     //Users
     const { router } = main;
-     repository = new UserRepository(main);
+    const repository = new UserRepository(main);
     const service = new UserService(repository);
-     controller = new UserController(main,service);
+    const controller = new UserController(main,service);
     router.get('/users', AdminAutorization(main), Execute(controller,'findAll'))
-    router.post('/users', Execute(controller,'create'))
+    router.post('/users',AdminAutorization(main),  Execute(controller,'create'))
 
     //roles
-     repository = new RolRepository(main);
-     controller = new RolController(main,repository);
-     router.get('/rols', Execute(controller,'find'))
-     //A REALIZAR
-     // 1 GEHERAR SEGUIMIENTO, ID DE REQUEST EN HEAADER MONGOOSE-
-     //72 FECHA CREACION, ID REQUEST, RECURSO CONSULTADO - METODO PETICION
+    const repositoryRol = new RolRepository(main);
+    const controllerRol = new RolController(main,repositoryRol);
+     router.get('/rols', Execute(controllerRol,'find'))
+     //document type
+     const repositoryDocumentType = new DocumentTypeRepository(main);
+     const controllerDocumentType = new DocumentTypeController(main,repositoryDocumentType);
+     router.get('/documenttypes', Execute(controllerDocumentType,'find'))
+
 };

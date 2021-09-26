@@ -34,6 +34,14 @@ export class Enviroments {
     @IsNotEmpty()
     SECRET_KEY_REFRESH:string;
 
+    @IsNotEmpty()
+    @IsNumberString()
+    MINUTES_EXPIRED_TOKEN:string;
+
+    @IsNotEmpty()
+    @IsNumberString()
+    HOURS_EXPIRED_TOKEN_REFRESH:string;
+
     //database
     @IsString()
     @IsNotEmpty()

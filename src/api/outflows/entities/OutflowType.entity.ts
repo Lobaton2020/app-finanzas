@@ -1,7 +1,9 @@
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany} from "typeorm";
 import { AbstractEntity } from "../../../lib/shared/entities/AbstractEntity.entity";
-import { Column, Entity, OneToMany} from "typeorm";
+
 import { Outflow } from "./Outflow.entity";
 import { Category } from "./Category.entity";
+import { User } from "../../../api/users/entities/User.entity";
 
 @Entity("outflowtypes")
 export class OutflowType extends AbstractEntity{
@@ -17,5 +19,9 @@ export class OutflowType extends AbstractEntity{
 
     @OneToMany((_)=>Category, (category)=>category.outflowtype)
     categories:Category[];
+
+    @JoinColumn()
+    @ManyToOne((_)=>User, (user)=>user.outflowtypes, { nullable:true})
+    user:User;
 
 }

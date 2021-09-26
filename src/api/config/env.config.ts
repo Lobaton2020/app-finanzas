@@ -10,6 +10,8 @@ export default interface IEnviroment{
     PREFIX_API:string,
     SECRET_KEY:string,
     SECRET_KEY_REFRESH:string,
+    MINUTES_EXPIRED_TOKEN:string,
+    HOURS_EXPIRED_TOKEN_REFRESH:string
     //database
     DB_HOST:string;
     DB_PORT:number;
@@ -27,6 +29,8 @@ export const {
     PREFIX_API,
     SECRET_KEY,
     SECRET_KEY_REFRESH,
+    MINUTES_EXPIRED_TOKEN,
+    HOURS_EXPIRED_TOKEN_REFRESH,
 
     DB_HOST,
     DB_PORT = 3306,

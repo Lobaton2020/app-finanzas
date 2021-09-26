@@ -3,10 +3,13 @@ import { BeforeInsert, BeforeUpdate, Column, Entity, JoinColumn, ManyToOne, OneT
 import { DocumentType } from "./DocumentType.entity";
 import { Rol } from "./Rol.entity";
 import { hash } from "bcryptjs"
-import { Porcent } from "../../../api/inflows/entities/Porcent.entity";
-import { Inflow } from "src/api/inflows/entities/Intflow.entity";
-import { Category } from "src/api/outflows/entities/Category.entity";
-import { Outflow } from "src/api/outflows/entities/Outflow.entity";
+import { Deposit } from "../../inflows/entities/Deposit.entity";
+import { Inflow } from "../../../api/inflows/entities/Intflow.entity";
+import { Category } from "../../../api/outflows/entities/Category.entity";
+import { Outflow } from "../../../api/outflows/entities/Outflow.entity";
+import { OutflowType } from "../../../api/outflows/entities/OutflowType.entity";
+import { InflowType } from "../../../api/inflows/entities/IntflowType.entity";
+import { Traceability } from "../../../api/admin/entities/Traceability.entity";
 
 @Entity("users")
 export class User extends AbstractEntity{
@@ -32,6 +35,17 @@ export class User extends AbstractEntity{
     @Column({ type: "timestamp"})
     bornDate:Date;
 
+
+    @Column({ type: "varchar", nullable:true, select:false})
+    emailVerifyDate:string;
+
+    @Column({ type: "varchar", nullable:true, select:false})
+    recoveryPasswordToken:string;
+
+
+    @Column({ type: "varchar", nullable:true, select:false})
+    rememberToken:string;
+
     @BeforeInsert()
     @BeforeUpdate()
     async hashPassword() {
@@ -47,8 +61,17 @@ export class User extends AbstractEntity{
     @ManyToOne((_)=>DocumentType, (documentType)=>documentType.users,{ nullable:false,onDelete:"CASCADE" })
     documentType:DocumentType;
 
-    @OneToMany((_)=>Porcent, (porcent)=>porcent.users)
-    porcent:Porcent;
+    @OneToMany((_)=>Traceability, (traceabily)=>traceabily.user)
+    traceabilities:Traceability[];
+
+    @OneToMany((_)=>Deposit, (deposit)=>deposit.user)
+    deposits:Deposit[];
+
+    @OneToMany((_)=>OutflowType, (outflowtype)=>outflowtype.user)
+    outflowtypes:OutflowType[];
+
+    @OneToMany((_)=>InflowType, (inflowtype)=>inflowtype.user)
+    inflowtypes:InflowType[];
 
     @OneToMany((_)=>Inflow, (inflow)=>inflow.user)
     inflows:Inflow;

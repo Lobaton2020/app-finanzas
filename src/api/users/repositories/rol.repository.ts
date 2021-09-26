@@ -1,11 +1,10 @@
-import { getRepository } from "typeorm";
+import { getRepository, Repository } from "typeorm";
 import { Main } from "../../../lib/core/main/Main";
 import Logger from "../../../lib/shared/logger/Logger";
 import { Rol } from "../entities/Rol.entity";
-import { User } from "../entities/User.entity";
 
 export class RolRepository{
-    private Rol:any;
+    private Rol:Repository<Rol>;
     private logger:Logger;
 
     constructor(private main:Main){
