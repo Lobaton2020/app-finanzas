@@ -21,6 +21,7 @@ export default class ExpressApp{
 
     middlewares(){
         this._app.use(cors())
+        this._app.get("/health",(req,res)=> res.json({ message:"Todo bien pa!"} ))
         this._app.use(this.env.PREFIX_API, this._router)
         this._app.use("*", notFound)
         this._app.use(globalError(this.logger, this.isDebug))

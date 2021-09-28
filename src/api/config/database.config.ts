@@ -1,5 +1,17 @@
 import IEnviroment from "./env.config";
 import path from "path"
+import { Deposit } from "../inflows/entities/Deposit.entity";
+import { InflowDeposit } from "../inflows/entities/InflowDeposit.entity";
+import { Inflow } from "../inflows/entities/Intflow.entity";
+import { InflowType } from "../inflows/entities/IntflowType.entity";
+import { Category } from "../outflows/entities/Category.entity";
+import { Outflow } from "../outflows/entities/Outflow.entity";
+import { OutflowType } from "../outflows/entities/OutflowType.entity";
+import { DocumentType } from "../users/entities/DocumentType.entity";
+import { Rol } from "../users/entities/Rol.entity";
+import { User } from "../users/entities/User.entity";
+import { Traceability } from "../admin/entities/Traceability.entity";
+
 export default (env:IEnviroment) => ({
     type: env.DB_TYPE as any,
     host: env.DB_HOST,
@@ -8,9 +20,17 @@ export default (env:IEnviroment) => ({
     password: env.DB_PASSWORD,
     database: env.DATABASE_NAME,
     entities: [
-      process.env.TYPE == "PROD" ?
-      path.resolve(__dirname,"../../../dist/api/**/*.js"):
-      path.resolve(__dirname,"../../../src/api/**/*.ts")
+      Deposit,
+      InflowDeposit,
+      Inflow,
+      InflowType,
+      Category,
+      Outflow,
+      OutflowType,
+      DocumentType,
+      Rol,
+      User,
+      Traceability
     ],
     autoLoadEntities: true,
 
@@ -28,6 +48,6 @@ export default (env:IEnviroment) => ({
     },
     // 'synchronize' desactivar en produccion.
     synchronize: false,
-    logging: true,
-    logger: 'file',
+    logging: false,
+    // logger: 'file',
   });

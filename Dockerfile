@@ -17,7 +17,7 @@ COPY . .
 RUN tsc
 
 ####### Create app for image #######
-FROM node:14.2.0-alpine3.11
+FROM mhart/alpine-node:8.12.0
 #generata workgroup for app
 WORKDIR /root/src/app
 #copy fron stage to real app
@@ -26,6 +26,6 @@ COPY --from=stage /root/stage/src/dist /root/src/app/dist
 #install dependeces for prod
 RUN npm ci
 #port to expose the application
-EXPOSE 3000
+EXPOSE 80
 #init app command
 ENTRYPOINT ["npm","start"]
