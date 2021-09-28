@@ -7,7 +7,7 @@ import { Outflow } from "./Outflow.entity";
 @Entity("categories")
 export class Category extends AbstractEntity{
 
-    @Column({ unique:true })
+    @Column()
     name:string = "";
 
 

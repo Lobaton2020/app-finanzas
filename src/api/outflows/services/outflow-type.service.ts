@@ -8,8 +8,8 @@ export class OutflowTypeService{
         private readonly outflowTypeRepository:OutflowTypeRepository
     ){}
 
-    async find(pag:IPagination){
-        return await this.outflowTypeRepository.find(pag);
+    async find(pag:IPagination,userId:number){
+        return await this.outflowTypeRepository.find(pag,userId);
     }
 
     async create(dataIn:OutflowTypeCreateDto){

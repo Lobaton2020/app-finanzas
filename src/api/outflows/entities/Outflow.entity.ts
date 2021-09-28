@@ -9,7 +9,7 @@ import { Deposit } from "../../../api/inflows/entities/Deposit.entity";
 export class Outflow extends AbstractEntity{
 
     @Column({ type: "float"})
-    amount:string;
+    amount:number;
 
     @Column({ type: "mediumtext",nullable:true})
     description:string;
@@ -22,7 +22,7 @@ export class Outflow extends AbstractEntity{
 
     @JoinColumn()
     @ManyToOne((_) => Category, (category) => category.outflows, { nullable:true})
-    category: OutflowType;
+    category: Category;
 
     @JoinColumn()
     @ManyToOne((_) => User, (user) => user.outflows, { nullable:false})

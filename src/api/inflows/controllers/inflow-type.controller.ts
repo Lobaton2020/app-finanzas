@@ -14,7 +14,7 @@ export class InflowTypeController extends Controller{
     }
 
     async find(req:Request){
-        return await this.inflowTypeService.find(await getPagination(req.query))
+        return await this.inflowTypeService.find(await getPagination(req.query),req["user"]["id"])
     }
 
 

@@ -10,13 +10,15 @@ import { OutflowTypeController } from '../controllers/outflow-type.controller';
 import { OutflowRepository } from '../repositories/outflow.repository';
 import { OutflowService } from '../services/outflow.service';
 import { OutflowController } from '../controllers/outflow.controller';
+import { ReportRepository } from '../../../api/reports/repositories/report.repository';
 
 export default (main:Main)=>{
 
     //outflows
     const { router } = main;
-    const repositoryOutflow = new OutflowRepository(main);
-    const serviceOutflow = new OutflowService(repositoryOutflow);
+    const repositoryOutflow = new OutflowRepository(main,new ReportRepository(main));
+    const repositoryReport = new ReportRepository(main);
+    const serviceOutflow = new OutflowService(repositoryOutflow, repositoryReport);
     const controllerOutflow = new OutflowController(main,serviceOutflow);
     router.get('/outflows', UserAutorization(main), Execute(controllerOutflow,'find'))
     router.post('/outflows',UserAutorization(main), Execute(controllerOutflow,'create'))

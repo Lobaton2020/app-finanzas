@@ -15,9 +15,8 @@ export class DepositController extends Controller{
 
     async find(req:Request){
         this.logger.info("Crear nuevo usuario - SignUp")
-        return await this.depositService.find(await getPagination(req.query))
+        return await this.depositService.find(await getPagination(req.query), req["user"]["id"])
     }
-
 
     async create(req:Request){
         this.logger.info("Crear nuevo Deposito - SignUp")

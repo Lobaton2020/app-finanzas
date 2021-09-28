@@ -1,8 +1,9 @@
 import { AbstractEntity } from "../../../lib/shared/entities/AbstractEntity.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne } from "typeorm";
 import { User } from "../../users/entities/User.entity";
 import { InflowType } from "./IntflowType.entity";
-import { InflowPorcent } from "./InflowDeposit.entity";
+import { InflowDeposit } from "./InflowDeposit.entity";
+import { Deposit } from "./Deposit.entity";
 
 @Entity("inflows")
 export class Inflow extends AbstractEntity{
@@ -27,7 +28,7 @@ export class Inflow extends AbstractEntity{
     @ManyToOne((_) => InflowType, (inflowtype) => inflowtype.inflows, { nullable:false})
     inflowtype: InflowType;
 
-    //no keys in table
-    @OneToMany(()=>InflowPorcent,(inflowporcent)=>inflowporcent.inflow)
-    inflowporcents:InflowPorcent[]
+    @OneToMany(()=>InflowDeposit,(inflowdeposit)=>inflowdeposit.inflow)
+    inflowdeposits:InflowDeposit[]
+
 }

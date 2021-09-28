@@ -2,11 +2,11 @@ import { Outflow } from "../../../api/outflows/entities/Outflow.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { AbstractEntity } from "../../../lib/shared/entities/AbstractEntity.entity";
 import { User } from "../../users/entities/User.entity";
-import { InflowPorcent } from "./InflowDeposit.entity";
+import { InflowDeposit } from "./InflowDeposit.entity";
 
 @Entity("deposits")
 export class Deposit extends AbstractEntity{
-    @Column({ unique:true })
+    @Column()
     name:string;
 
     @Column({ type:"boolean",default:true })
@@ -16,8 +16,8 @@ export class Deposit extends AbstractEntity{
     @ManyToOne(() => User, (user) => user.deposits)
     user: User;
 
-    @OneToMany(()=>InflowPorcent,(inflowporcent)=>inflowporcent.deposit)
-    inflowporcents:InflowPorcent[]
+    @OneToMany(()=>InflowDeposit,(inflowdeposit)=>inflowdeposit.deposit)
+    inflowdeposits:InflowDeposit[]
 
     @OneToMany(()=>Outflow,(outflows)=>outflows.deposit)
     outflows:Outflow[]

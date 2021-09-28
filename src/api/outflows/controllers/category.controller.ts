@@ -16,7 +16,7 @@ export class CategoryController extends Controller{
 
     async find(req:Request){
         this.logger.info("Crear nuevo usuario - SignUp")
-        return await this.categoryService.find(await getPagination(req.query))
+        return await this.categoryService.find(await getPagination(req.query), req["user"]["id"])
     }
 
 

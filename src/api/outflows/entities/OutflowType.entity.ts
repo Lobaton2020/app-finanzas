@@ -8,7 +8,7 @@ import { User } from "../../../api/users/entities/User.entity";
 @Entity("outflowtypes")
 export class OutflowType extends AbstractEntity{
 
-    @Column({ unique:true })
+    @Column()
     name:string = "";
 
     @Column({ type:"boolean",default:true })

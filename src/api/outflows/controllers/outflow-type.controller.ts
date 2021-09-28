@@ -14,7 +14,7 @@ export class OutflowTypeController extends Controller{
     }
 
     async find(req:Request){
-        return await this.outflowTypeService.find(await getPagination(req.query))
+        return await this.outflowTypeService.find(await getPagination(req.query), req["user"].id)
     }
 
 

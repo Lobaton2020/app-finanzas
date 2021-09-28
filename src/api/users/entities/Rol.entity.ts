@@ -1,5 +1,5 @@
 import { AbstractEntity } from "../../../lib/shared/entities/AbstractEntity.entity";
-import { Column, Entity, OneToMany, Unique } from "typeorm";
+import { Column, Entity, OneToMany } from "typeorm";
 import { User } from "./User.entity";
 
 @Entity("rols")

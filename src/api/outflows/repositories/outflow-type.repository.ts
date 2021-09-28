@@ -22,9 +22,9 @@ export class OutflowTypeRepository{
         this.logger = this.main.logger;
     }
 
-    async find(pag:IPagination){
+    async find(pag:IPagination,userId:number){
         this.logger.info("Se consultan datos desde el repositorio de outflow type")
-        return await this.OutflowType.find(pag);
+        return await this.OutflowType.find({...pag, where: { user: userId }});
     }
 
     async create(outflowType:OutflowTypeCreateDto){

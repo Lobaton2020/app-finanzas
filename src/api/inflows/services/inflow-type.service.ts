@@ -8,8 +8,8 @@ export class InflowTypeService{
         private readonly inflowTypeRepository:InflowTypeRepository
     ){}
 
-    async find(pag:IPagination){
-        return await this.inflowTypeRepository.find(pag);
+    async find(pag:IPagination,userId:number){
+        return await this.inflowTypeRepository.find(pag,userId);
     }
 
     async create(dataIn:InflowTypeCreateDto){

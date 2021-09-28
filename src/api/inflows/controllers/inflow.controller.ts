@@ -1,8 +1,9 @@
-import { Request, Response } from 'express'
+import { Request } from 'express'
 import { getPagination } from '../../../lib/shared/pagination/pagination';
 import { Main } from '../../../lib/core/main/Main';
 import { Controller } from '../../../lib/shared/main/Controller.class';
 import { InflowService } from '../services/inflow.service';
+import { InflowCreateDto } from '../dtos/inflow-create.dto';
 
 export class InflowController extends Controller{
     constructor(
@@ -14,17 +15,16 @@ export class InflowController extends Controller{
 
     async find(req:Request){
         this.logger.info("Obtener todos los registros - Entradas de dinero")
-        return await this.inflowService.find(await getPagination(req.query))
+        return await this.inflowService.find(await getPagination(req.query),req["user"]["id"])
     }
 
 
-    async create(req:Request,res:Response){
+    async create(req:Request){
         this.logger.info("Crear nueva entrada de dinero")
         const body = { ...req.body, userId: req["user"].id };
-        res.json({"oppd":"sdsds"})
-        // const data = await this.main.validator.classValidator.validate(DepositCreateDto,body)
-        // const deposit = await this.depositService.create(data);
-        // delete deposit.user
-        // return deposit
+
+        const data = await this.main.validator.classValidator.validate(InflowCreateDto,body)
+        return await this.inflowService.create(data);
+
     }
 }

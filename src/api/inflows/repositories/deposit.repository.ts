@@ -22,9 +22,9 @@ export class DepositRepository{
         this.logger = this.main.logger;
     }
 
-    async find(pag:IPagination){
+    async find(pag:IPagination,userId:number){
         this.logger.info("Se consultan datos desde el repositorio de user")
-        return await this.Deposit.find(pag);
+        return await this.Deposit.find({...pag, where:{ user: userId }});
     }
 
     async create(deposit:DepositCreateDto){

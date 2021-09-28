@@ -2,9 +2,9 @@ import { Request,Response } from 'express'
 import { Main } from '../../../lib/core/main/Main';
 import { Controller } from '../../../lib/shared/main/Controller.class';
 
-import { CategoryCreate } from '../dtos/category.dto';
 import { getPagination } from '../../../lib/shared/pagination/pagination';
 import { OutflowService } from '../services/outflow.service';
+import { OutflowCreateDto } from '../dtos/outflow-create.dto';
 
 export class OutflowController extends Controller{
     constructor(
@@ -16,14 +16,13 @@ export class OutflowController extends Controller{
 
     async find(req:Request){
         this.logger.info("Crear nuevo usuario - SignUp")
-        return await this.outflowService.find(await getPagination(req.query))
+        return await this.outflowService.find(await getPagination(req.query),req["user"]["id"])
     }
 
-
     async create(req:Request){
-        this.logger.info("Crear nuevo usuario - SignUp")
-        const body = { ...req.body,userId: req["user"].id };
-        const data = await this.main.validator.classValidator.validate(CategoryCreate,body)
-        return await this.outflowService.create(data)
+        this.logger.info("Crear nueva entrada de dinero")
+        const body = { ...req.body, userId: req["user"].id };
+        const data = await this.main.validator.classValidator.validate(OutflowCreateDto, body)
+        return await this.outflowService.create(data);
     }
 }

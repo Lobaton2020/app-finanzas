@@ -25,9 +25,9 @@ export class CategoryRepository{
         this.logger = this.main.logger;
     }
 
-    async find(pag:IPagination){
+    async find(pag:IPagination,userId:number){
         this.logger.info("Se consultan datos desde el repositorio de user")
-        return await this.Category.find(pag);
+        return await this.Category.find({ ...pag, where:{ user:userId } });
     }
 
     async create(category:CategoryCreate){

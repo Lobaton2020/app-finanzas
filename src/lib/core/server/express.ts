@@ -3,6 +3,7 @@ import IEnviroment from "../../../api/config/env.config";
 import Logger from "../../shared/logger/Logger";
 import { globalError } from "./middlewares/global-error";
 import { notFound } from "./middlewares/not-found";
+import cors from 'cors'
 
 export default class ExpressApp{
     private _app = express();
@@ -19,6 +20,7 @@ export default class ExpressApp{
     }
 
     middlewares(){
+        this._app.use(cors())
         this._app.use(this.env.PREFIX_API, this._router)
         this._app.use("*", notFound)
         this._app.use(globalError(this.logger, this.isDebug))

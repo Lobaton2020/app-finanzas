@@ -6,7 +6,7 @@ import { User } from "../../../api/users/entities/User.entity";
 @Entity("inflowtypes")
 export class InflowType extends AbstractEntity{
 
-    @Column({ unique:true })
+    @Column()
     name:string = "";
 
     @Column({ type:"boolean",default:true })

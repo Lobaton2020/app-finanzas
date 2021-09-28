@@ -8,8 +8,8 @@ export class CategoryService{
         private readonly categoryRepository:CategoryRepository
     ){}
 
-    async find(pag:IPagination){
-        return await this.categoryRepository.find(pag);
+    async find(pag:IPagination, userId:number){
+        return await this.categoryRepository.find(pag, userId);
     }
 
     async create(dataIn:CategoryCreate){

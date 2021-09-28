@@ -4,7 +4,7 @@ import { Deposit } from "./Deposit.entity";
 import { Inflow } from "./Intflow.entity";
 
 @Entity("inflow_deposit")
-export class InflowPorcent extends AbstractEntity{
+export class InflowDeposit extends AbstractEntity{
 
     @Column({ type:"boolean",default:true })
     status:boolean;
@@ -13,11 +13,11 @@ export class InflowPorcent extends AbstractEntity{
     porcentNumber:number;
 
     @JoinColumn()
-    @ManyToOne(() => Deposit, (deposit) => deposit.inflowporcents,{nullable:false})
+    @ManyToOne(() => Deposit, (deposit) => deposit.inflowdeposits,{nullable:false})
     deposit: Deposit;
 
     @JoinColumn()
-    @ManyToOne(() => Inflow, (inflow) => inflow.inflowporcents,{nullable:false})
+    @ManyToOne(() => Inflow, (inflow) => inflow.inflowdeposits,{nullable:false})
     inflow: Inflow;
 
 

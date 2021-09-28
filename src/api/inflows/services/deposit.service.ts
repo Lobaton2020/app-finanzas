@@ -8,8 +8,8 @@ export class DepositService{
         private readonly depositRepository:DepositRepository
     ){}
 
-    async find(pag:IPagination){
-        return await this.depositRepository.find(pag);
+    async find(pag:IPagination,userId:number){
+        return await this.depositRepository.find(pag,userId);
     }
 
     async create(dataIn:DepositCreateDto){
