@@ -11,7 +11,7 @@ export interface IController{
 export class Controller implements IController{
 
     constructor(public readonly logger:Logger){}
-
+    //from web vscode
     catchError(err:any,res:Response){
         this.logger.error(err, "[Controller|catchError] Something went wrong")
         err = err || {}
